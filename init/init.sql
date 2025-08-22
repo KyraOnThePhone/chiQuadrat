@@ -216,3 +216,5 @@ EXEC sys.sp_addextendedproperty @name=N'TREE', @value=N'DEPENDENT_VARIABLE' , @l
 GO
 EXEC sys.sp_addextendedproperty @name=N'TREE', @value=N'INDEPENDENT_VARIABLE' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'CHI_SQUARE', @level2type=N'COLUMN',@level2name=N'SEX'
 GO
+
+

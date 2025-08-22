@@ -1,38 +1,47 @@
 services: 
-    web:
-        hostname: web
-        container_name: ChiQuadratWeb
-        build:
-            dockerfile: php/Dockerfile
-
-        volumes:
-        - ./webserver_data/:/var/www/localhost/htdocs/
-        - ./textdatenGenerator/:/var/www/textdatenGenerator
-
-        ports:
-            - "80:80"
-        environment: 
-            WEB_DOCUMENT_ROOT: /var/www/html
+  web:
+    hostname: web
+    container_name: ChiQuadratWeb
+    build:
+      dockerfile: php/Dockerfile
+    volumes:
+      - ./webserver_data/:/var/www/localhost/htdocs/
+      - ./textdatenGenerator/:/var/www/textdatenGenerator
+    ports:
+      - "80:80"
+    environment: 
+      WEB_DOCUMENT_ROOT: /var/www/html
        
+  database:
+    hostname: sql
+    container_name: ChiQuadratSQL
+    build:
+      dockerfile: Dockerfile
+    user: root
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=BratwurstIN23!
+      - MSSQL_PID=Developer
+    volumes:
+      - ./mssql-data/:/var/opt/mssql
+      - ./init/:/init
+    command: >
+      /bin/bash -c "
+      /opt/mssql/bin/sqlservr & 
+      sleep 30s && 
+      /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'BratwurstIN23!' -d master -i /init/init.sql &&
+      sleep infinity"
 
-    database:
-        hostname: sql
-        container_name: ChiQuadratSQL
-        build:
-            dockerfile: Dockerfile
-        user: root
-        
-        ports:
-            - "1433:1433"
-        
-        environment:
-            - ACCEPT_EULA=Y
-            - MSSQL_SA_PASSWORD=BratwurstIN23!
-            - MSSQL_PID=Developer
-
-        volumes:
-            - ./mssql-data/:/var/opt/mssql
-            - ./init/:/init
-
-
-        command: /bin/bash -c "/opt/mssql/bin/sqlservr & sleep 30s && /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'BratwurstIN23!' -d master -i /init/init.sql & sleep infinity"
+  rstats:
+    build:
+      context: ./rImage
+      dockerfile: Dockerfile
+    container_name: ChiQuadratR
+    depends_on:
+      - database
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./r-scripts/:/home/rstudio/scripts

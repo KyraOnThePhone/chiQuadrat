@@ -3,6 +3,10 @@ Chi-Quadrat Test als Schulprojekt bei Herrn Trimkowski
 Larissa & Kyra
 statistik, datenanalyse, mathe (grundrechenarten)
 
+R ausführen im Docker Container: 
+Rscript /home/rstudio/scripts/hello.R
+
+
 Ein Teil des Programms soll rein auf dem SQL Server geschehen. (durch Einstellungen, Funktionen, etc)
 
 Dokumentation in ARIS (oder ähnlichem: draw.io, auf einem Flipchart etc.)
