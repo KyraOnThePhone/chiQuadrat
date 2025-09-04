@@ -1,4 +1,5 @@
 # chiQuadrat
+Präsentation: https://1drv.ms/p/c/eef3a3deb2781862/ETpRo8DVAmJKo3sWKKMwZZEB9E1CigIrBjpVdIiLxANP8g?e=OUpEv4
 Chi-Quadrat Test als Schulprojekt bei Herrn Trimkowski
 Larissa & Kyra
 statistik, datenanalyse, mathe (grundrechenarten)
