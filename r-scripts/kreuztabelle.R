@@ -19,9 +19,6 @@ df <- dbGetQuery(con, "
 ")
 
 
-cat("=== 3D Kreuztabelle: BEHANDLUNG x RESULTAT x SEX ===\n")
-tbl3D <- table(df$BEHANDLUNG, df$RESULTAT, df$SEX)
-print(tbl3D)
 
 
 cat("\n=== BEHANDLUNG vs RESULTAT ===\n")
@@ -32,7 +29,7 @@ cat("\n=== SEX vs RESULTAT ===\n")
 tbl_geschlecht_ergebnis <- table(df$SEX, df$RESULTAT)
 print(tbl_geschlecht_ergebnis)
 
-cat("\n=== BEHANDLUNG vs SEX ===\n")
+cat("\n=== BEHANDLUNG vs SEX ===\n") #quatsch
 tbl_behandlung_geschlecht <- table(df$BEHANDLUNG, df$SEX)
 print(tbl_behandlung_geschlecht)
 

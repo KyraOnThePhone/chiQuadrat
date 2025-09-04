@@ -6,7 +6,6 @@ services:
       dockerfile: php/Dockerfile
     volumes:
       - ./webserver_data/:/var/www/localhost/htdocs/
-      - ./textdatenGenerator/:/var/www/textdatenGenerator
     ports:
       - "80:80"
     environment: 
