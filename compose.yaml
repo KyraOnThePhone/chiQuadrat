@@ -44,3 +44,5 @@ services:
     tty: true
     volumes:
       - ./r-scripts/:/home/rstudio/scripts
+    ports:
+      - "3838:3838"
